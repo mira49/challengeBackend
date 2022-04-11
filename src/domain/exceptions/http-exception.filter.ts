@@ -1,8 +1,8 @@
-import { ExceptionFilter, Catch, ArgumentsHost, Logger } from '@nestjs/common';
-import { Request, Response } from 'express';
-import UserAlreadyExistsException from './UserAlreadyExistsException';
-import UserNotFoundException from './UserNotFoundException';
-import ValidationException from './ValidationException';
+import { ExceptionFilter, Catch, ArgumentsHost, Logger } from "@nestjs/common";
+import { Request, Response } from "express";
+import UserAlreadyExistsException from "./UserAlreadyExistsException";
+import UserNotFoundException from "./UserNotFoundException";
+import ValidationException from "./ValidationException";
 
 @Catch()
 export default class HttpExceptionFilter implements ExceptionFilter<Error> {
@@ -16,7 +16,7 @@ export default class HttpExceptionFilter implements ExceptionFilter<Error> {
       message,
       statusCode: status,
       timestamp: new Date().toISOString(),
-      path: request.url,
+      path: request.url
     });
   }
 
@@ -28,13 +28,13 @@ export default class HttpExceptionFilter implements ExceptionFilter<Error> {
     ) {
       return {
         message: exception.message,
-        status: 422,
+        status: 422
       };
     }
     Logger.log(exception.stack);
     return {
       message: exception.message,
-      status: 500,
+      status: 500
     };
   }
 }

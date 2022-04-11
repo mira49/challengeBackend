@@ -1,5 +1,5 @@
-import User from '../../../domain/models/user';
-import { UserEntity } from './user.entity';
+import User from "../../../domain/models/user";
+import { UserEntity } from "./user.entity";
 
 export default class UserMapper {
   /**

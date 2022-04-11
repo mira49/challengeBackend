@@ -1,13 +1,13 @@
-import { Injectable, Inject } from '@nestjs/common';
-import { UserRepository } from 'src/domain/ports/user.repository';
-import User from '../models/user';
-import UserAlreadyExistsException from '../exceptions/UserAlreadyExistsException';
-import UserNotFoundException from '../exceptions/UserNotFoundException';
+import { Injectable, Inject } from "@nestjs/common";
+import { UserRepository } from "src/domain/ports/user.repository";
+import User from "../models/user";
+import UserAlreadyExistsException from "../exceptions/UserAlreadyExistsException";
+import UserNotFoundException from "../exceptions/UserNotFoundException";
 
 @Injectable()
 export default class UserService {
   constructor(
-    @Inject('UserRepository') private userRepository: UserRepository,
+    @Inject("UserRepository") private userRepository: UserRepository
   ) {}
 
   /**

@@ -1,15 +1,15 @@
-import { InjectModel } from '@nestjs/mongoose';
-import { Injectable } from '@nestjs/common';
-import { Model } from 'mongoose';
-import { UserRepository } from 'src/domain/ports/user.repository';
-import User from 'src/domain/models/user';
-import { UserEntity } from '../entity/user/user.entity';
-import UserMapper from '../entity/user/user.mapper';
+import { InjectModel } from "@nestjs/mongoose";
+import { Injectable } from "@nestjs/common";
+import { Model } from "mongoose";
+import { UserRepository } from "src/domain/ports/user.repository";
+import User from "src/domain/models/user";
+import { UserEntity } from "../entity/user/user.entity";
+import UserMapper from "../entity/user/user.mapper";
 
 @Injectable()
 export default class UserRepositoryMongo implements UserRepository {
   constructor(
-    @InjectModel('User') private readonly userModel: Model<UserEntity>,
+    @InjectModel("User") private readonly userModel: Model<UserEntity>
   ) {}
 
   public async findUserByEmail(email: string): Promise<User> {
