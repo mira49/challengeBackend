@@ -10,10 +10,28 @@ export default class EventVM {
 
   consents: ConsentObject[];
 
-  static getEventVM(userId: string, consents: ConsentObject[]): EventVM {
+  static getEventVM(userId: string, events: Event[]): EventVM {
     const eventVM = new EventVM();
     eventVM.user = { id: userId };
-    eventVM.consents = consents;
+    eventVM.consents = this.getConsents(events);
     return eventVM;
+  }
+
+  static getConsents(events: Event[]): ConsentObject[] {
+    const consents = [];
+    events.map((event, index) => {
+      if (event.emailNotifications)
+        consents.push({
+          id: ConsentType.email,
+          enabled: events.length - 1 === index
+        });
+      if (event.smsNotifications)
+        consents.push({
+          id: ConsentType.sms,
+          enabled: events.length - 1 === index
+        });
+      return consents;
+    });
+    return consents;
   }
 }

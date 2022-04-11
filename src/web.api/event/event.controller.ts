@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from "@nestjs/common";
+import { Body, Controller, Logger, Post } from "@nestjs/common";
 import EventService from "../../domain/services/event.service";
 import CreateConsentsReq from "./entities/CreateConsentsReq";
 import EventVM from "./entities/EventVM";
@@ -11,11 +11,15 @@ export default class EventController {
   async createEvent(
     @Body() createConsentsReq: CreateConsentsReq
   ): Promise<EventVM> {
+    Logger.log("Create event for user with id : " + createConsentsReq.userId);
     await this.evenService.createEvent(
       createConsentsReq.userId,
       createConsentsReq.emailNotifications,
       createConsentsReq.smsNotifications
     );
-    return EventVM.getEventVM(createConsentsReq.userId, []);
+    const events = await this.evenService.getEventsByUserId(
+      createConsentsReq.userId
+    );
+    return EventVM.getEventVM(createConsentsReq.userId, events);
   }
 }

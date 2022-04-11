@@ -18,4 +18,18 @@ export default class EventMapper {
         )
       : null;
   }
+
+  /**
+   * Get Event[] from EventEntity[]
+   * @param eventEntity
+   * @returns
+   */
+  public static toDomains(eventEntities: EventEntity[]): Event[] {
+    const events = new Array<Event>();
+    eventEntities.forEach(eventEntity => {
+      const event = this.toDomain(eventEntity);
+      events.push(event);
+    });
+    return events;
+  }
 }

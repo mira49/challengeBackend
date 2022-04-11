@@ -26,4 +26,14 @@ export default class EventService {
     const event = new Event(userId, emailNotifications, smsNotifications);
     return this.eventRepository.createEvent(event);
   }
+
+  /**
+   * get events by user id
+   * @param userId
+   * @returns
+   */
+  public async getEventsByUserId(userId: string): Promise<Event[]> {
+    await this.userRepository.findUserById(userId);
+    return this.eventRepository.findEventByUserId(userId);
+  }
 }

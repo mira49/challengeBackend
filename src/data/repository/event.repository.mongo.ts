@@ -12,6 +12,13 @@ export default class EventRepositoryMongo implements EventRepository {
     @InjectModel("Event") private readonly eventModel: Model<EventEntity>
   ) {}
 
+  public async findEventByUserId(userId: string): Promise<Event[]> {
+    const events = await this.eventModel
+      .find({ userId })
+      .sort({ createAt: "asc" });
+    return EventMapper.toDomains(events);
+  }
+
   public async createEvent(eventTocreate: Event): Promise<Event> {
     const eventCreated = new this.eventModel(eventTocreate);
     return EventMapper.toDomain(await eventCreated.save());
