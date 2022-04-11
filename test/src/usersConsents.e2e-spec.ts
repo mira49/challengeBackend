@@ -2,6 +2,7 @@ import { Test, TestingModule } from "@nestjs/testing";
 import { INestApplication } from "@nestjs/common";
 import * as request from "supertest";
 import { getConnectionToken, MongooseModule } from "@nestjs/mongoose";
+import { Connection } from "mongoose";
 import ConfigModule from "../../src/data/config.module";
 import ConfigService from "../../src/data/config.service";
 import EventSchema from "../../src/data/entity/event/event.schema";
@@ -11,7 +12,6 @@ import UserRepositoryMongo from "../../src/data/repository/user.repository.mongo
 import DomainModule from "../../src/domain/domain.module";
 import UserService from "../../src/domain/services/user.service";
 import UserController from "../../src/web.api/user/user.controller";
-import { Connection } from "mongoose";
 import CreateConsentsReq from "../../src/web.api/event/entities/CreateConsentsReq";
 import EventService from "../../src/domain/services/event.service";
 import EventController from "../../src/web.api/event/event.controller";

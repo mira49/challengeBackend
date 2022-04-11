@@ -11,7 +11,7 @@ export default class EventController {
   async createEvent(
     @Body() createConsentsReq: CreateConsentsReq
   ): Promise<EventVM> {
-    Logger.log("Create event for user with id : " + createConsentsReq.userId);
+    Logger.log(`Create event for user with id : ${createConsentsReq.userId}`);
     await this.evenService.createEvent(
       createConsentsReq.userId,
       createConsentsReq.emailNotifications,

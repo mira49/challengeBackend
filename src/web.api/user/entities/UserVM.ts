@@ -1,4 +1,5 @@
 import User from "src/domain/models/user";
+
 export type ConsentObject = { id: string; enabled: boolean };
 
 export default class UserVM {
