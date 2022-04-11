@@ -2,6 +2,7 @@ import { Module, DynamicModule } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import ConfigModule from './config.module';
 import ConfigService from './config.service';
+import UserSchema from './entity/user/user.schema';
 import DomainModule from '../domain/domain.module';
 
 const dbUri = 'MONGO_SERVER_URL';
@@ -22,7 +23,8 @@ export default class DataModule {
               configService.get(dbPort)}/${configService.get(dbName)}`,
           }),
           inject: [ConfigService],
-        })
+        }),
+        MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
       ],
     };
   }
